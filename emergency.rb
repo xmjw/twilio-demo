@@ -58,6 +58,7 @@ def secured? params, request
 	# the callback URL you provided to Twilio
 	url = request.url
 	# notice the From value is from the environment variable, so the request must be from that caller ID or it is invalid irrespective. 
+  # Therefore, knowing the command number doesn't allow anyone to take control of the demo.
 	post_vars = {:From => ENV['USER_CALLER_ID'], :To => params[:To], :Body => params[:Body], :NumMedia => params[:NumMedia], :MessageSid => params[:MessageSid], :AccountSid => params[:AccountSid], :SmsSid => params[:SmsSid]}
 	signature = request['X-Twilio-Signature']
 	# Make sure the request is from both Twilio and the allowed Caller ID...
