@@ -25,7 +25,7 @@ post '/trigger' do
     elsif params[:Body].downcase == 'dial'
 		  dial "http://#{request.host}/call"
 		else
-      "<Response><Message>To use the automated trigger: Text 'forward' to forward all messages from this demo to yourself. Text 'dial' to diall all calls back and play some music.</Message></Response>"
+      "<Response><Message>To use the automated trigger: Text 'forward' to forward all messages from this demo to yourself. Text 'dial' to dial all calls back and play some music.</Message></Response>"
 		end
 	end	
 end
@@ -54,6 +54,11 @@ def forward
 end
 
 def secured? params, request
+  true
+
+end
+
+def garbage params, request
 	validator = Twilio::Util::RequestValidator.new ENV['TWILIO_AUTH_TOKEN']
 	# the callback URL you provided to Twilio
 	url = request.url
